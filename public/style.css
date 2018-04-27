@@ -1,0 +1,60 @@
+body {
+  font-family: sans-serif;
+  background-color: deepskyblue;
+}
+
+a {
+  text-decoration: none;
+}
+
+label {
+  display: block;
+}
+
+nav a {
+  display: inline-block;
+  margin: 1em;
+}
+
+form div {
+  margin: 1em;
+  display: inline-block;
+}
+
+.notes {
+  display: flex;
+  justify-content: center;
+  height: 98vh;
+}
+
+.notes .note {
+  align-self: center;
+}
+
+.red {
+  fill: red
+}
+
+.orange {
+  fill: orange
+}
+
+.yellow {
+  fill: yellow
+}
+
+.green {
+  fill: green
+}
+
+.blue {
+  fill: blue
+}
+
+.indigo {
+  fill: indigo
+}
+
+.violet {
+  fill: violet
+}
