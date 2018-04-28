@@ -7,12 +7,12 @@ async function seed () {
 
   //The notes here are related to the letter on the key that the user must click
   const users = await Promise.all([
-    Level.create({notes: 'A'}),
-    Level.create({notes: 'L'}),
-    Level.create({notes: 'AL'}),
-    Level.create({notes: 'LA'}),
-    Level.create({notes: 'LAL'}),
-    Level.create({notes: 'ALA'})
+    Level.create({notes: 'R'}),
+    Level.create({notes: 'V'}),
+    Level.create({notes: 'RV'}),
+    Level.create({notes: 'VR'}),
+    Level.create({notes: 'VRV'}),
+    Level.create({notes: 'RVR'})
   ])
 
   console.log(`seeded ${users.length} users`)
