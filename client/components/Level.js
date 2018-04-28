@@ -37,7 +37,10 @@ class Level extends React.Component
       else
       {
         if (notes.length === 1)
+        {
           history.push(`/levels/${+this.props.match.params.levelId + 1}`)
+          this.componentDidMount()
+        }
         else
           this.props.update(notes.slice(1))
       }
