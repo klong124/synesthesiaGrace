@@ -1,6 +1,6 @@
 body {
   font-family: sans-serif;
-  background-color: deepskyblue;
+  background-color: #00e9ff;
 }
 
 a {
@@ -23,11 +23,13 @@ form div {
 
 .notes {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   height: 98vh;
 }
 
 .notes .note {
+  width: 100px;
+  height: 100px;
   align-self: center;
 }
 
