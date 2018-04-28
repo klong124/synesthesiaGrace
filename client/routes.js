@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {withRouter, Route, Switch} from 'react-router-dom'
+import {withRouter, Route, Switch, Redirect} from 'react-router-dom'
 import {Level, Home} from './components'
 
 /**
@@ -17,7 +17,7 @@ class Routes extends Component {
     return (
       <Switch>
         <Route exact path='/levels/:levelId' component={Level} />
-        <Route component={Home} />
+        <Redirect to="/levels/1"/>
       </Switch>
     )
   }
