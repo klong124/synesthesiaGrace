@@ -33,6 +33,10 @@ form div {
   align-self: center;
 }
 
+.notes .key {
+  width: 300px;
+}
+
 .red {
   fill: red
 }

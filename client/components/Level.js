@@ -53,7 +53,8 @@ class Level extends React.Component
 
   render()
   {
-    const {notes} = this.props;
+    const {notes} = this.props
+    const levelId = this.props.match.params.levelId
     const keyToClassName =
       {
         "R": "red",
@@ -63,6 +64,10 @@ class Level extends React.Component
         "B": "blue",
         "I": "indigo",
         "V": "violet"
+      }
+    const showKey =
+      {
+
       }
     return ( //Rerenders every time key is pressed, but now it's not a bug, it's a feature ;)
       <div className="notes">
@@ -78,6 +83,20 @@ class Level extends React.Component
               </svg>
             )
           })
+        }
+        {
+          (levelId === '1' || levelId === '2' || levelId === '3' || levelId === '9' || levelId === '16' || levelId === '18' || levelId === '20' || levelId === '23') &&
+          <div className="key">
+            <h1>Press</h1>
+            {
+              _.uniq(notes).map(note =>
+              {
+                return (
+                  <h1>{note} for {keyToClassName[note].slice(0, 1).toUpperCase() + keyToClassName[note].slice(1)}</h1>
+                )
+              })
+            }
+          </div>
         }
       </div>
     )
