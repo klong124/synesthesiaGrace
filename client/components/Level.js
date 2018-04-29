@@ -24,7 +24,11 @@ class Level extends React.Component
   componentDidMount()
   {
     this.props.loadLevel()
-    addEventListener("keypress", e =>
+    addEventListener("keypress", e => //So we have a few different issues here
+                                          //componentDidMount isn't rerunning when history.pushing (could there be an issue with not using connect in Route.js?)
+                                          //when loading level again after history.pushing, the new level doesn't play its sound
+                                          //when history.pushing, sound of last note of current level gets cut off <--with window.location.reload(false), this is the only issue left
+                                        //With line 47, all issues get taken care of
     {
       e.preventDefault()
       const {notes} = this.props;
@@ -39,7 +43,7 @@ class Level extends React.Component
         if (notes.length === 1)
         {
           history.push(`/levels/${+this.props.match.params.levelId + 1}`)
-          this.componentDidMount()
+          setTimeout(() => window.location.reload(false), 700); //Should I do this?
         }
         else
           this.props.update(notes.slice(1))
@@ -98,7 +102,7 @@ const mapDispatch = (dispatch, ownProps) => {
       {
         action.notes.forEach((note, time) =>
         {
-          synth.triggerAttackRelease(colorToSound[note], '8n', time)
+          synth.triggerAttackRelease(colorToSound[note], '8n', time*.7)
         })
       })
     },
