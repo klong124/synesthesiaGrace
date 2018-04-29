@@ -24,31 +24,33 @@ class Level extends React.Component
   componentDidMount()
   {
     this.props.loadLevel()
-    addEventListener("keypress", e => //So we have a few different issues here
-                                          //componentDidMount isn't rerunning when history.pushing (could there be an issue with not using connect in Route.js?)
-                                          //when loading level again after history.pushing, the new level doesn't play its sound
-                                          //when history.pushing, sound of last note of current level gets cut off <--with window.location.reload(false), this is the only issue left
-                                        //With line 47, all issues get taken care of
+    // this.handleClick = this.handleClick.bind(this)
+    addEventListener("keypress", e =>
     {
-      e.preventDefault()
-      const {notes} = this.props;
-
-      //Play note whenever key is pressed
-      synth.triggerAttackRelease(colorToSound[e.key.toUpperCase()], '8n')
-
-      if (e.key.toUpperCase() !== notes[0])
-        history.push('/')
-      else
-      {
-        if (notes.length === 1)
-        {
-          history.push(`/levels/${+this.props.match.params.levelId + 1}`)
-          setTimeout(() => window.location.reload(false), 700); //Should I do this?
-        }
-        else
-          this.props.update(notes.slice(1))
-      }
+      this.handleClick(e, e.key)
     })
+  }
+
+  handleClick(e, key)
+  {
+    e.preventDefault()
+    const {notes} = this.props;
+
+    //Play note whenever key is pressed
+    synth.triggerAttackRelease(colorToSound[key.toUpperCase()], '8n')
+
+    if (key.toUpperCase() !== notes[0])
+      history.push('/')
+    else
+    {
+      if (notes.length === 1)
+      {
+        history.push(`/levels/${+this.props.match.params.levelId + 1}`)
+        setTimeout(() => window.location.reload(false), 700); //Should I do this?
+      }
+      else
+        this.props.update(notes.slice(1))
+    }
   }
 
   render()
@@ -75,7 +77,7 @@ class Level extends React.Component
           }).map(note =>
           {
             return (
-              <svg className={"note " + keyToClassName[note]} key={note}>
+              <svg className={"note " + keyToClassName[note]} key={note} onClick={e => this.handleClick(e, note)}>
                 <rect width="100" height="100"/>
               </svg>
             )
@@ -89,7 +91,7 @@ class Level extends React.Component
                 _.uniq(notes).map(note =>
                 {
                   return (
-                    <h1>{note} for {keyToClassName[note].slice(0, 1).toUpperCase() + keyToClassName[note].slice(1)}</h1>
+                    <h1 key={note}>{note} for {keyToClassName[note].slice(0, 1).toUpperCase() + keyToClassName[note].slice(1)}</h1>
                   )
                 })
               }
