@@ -36,7 +36,7 @@ class Level extends React.Component
     e.preventDefault()
     const {notes} = this.props;
 
-    //Play note whenever key is pressed
+    //Play note whenever key or block is pressed
     synth.triggerAttackRelease(colorToSound[key.toUpperCase()], '8n')
 
     if (key.toUpperCase() !== notes[0])
