@@ -14,10 +14,6 @@ const store = createStore(reducer, middleware)
 export default store
 export * from './notes'
 
-// addEventListener("keypress", e => {
-//   store.dispatch({type: "KEY_PRESS", key: e.key})
-// })
-
 requestAnimationFrame(timeStamp => {
   store.dispatch({type: "TICK", timeStamp})
 })
